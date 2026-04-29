@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chiang Mai Rednote Travel Research</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Presentation navigation">
+      <a href="#overview">Overview</a>
+      <a href="#map">Map</a>
+      <a href="#top-picks">Top Picks</a>
+      <a href="#nature">Nature</a>
+      <a href="#food">Food</a>
+      <a href="#culture">Culture</a>
+      <a href="#stay">Stay</a>
+      <a href="#all-places">All Places</a>
+    </header>
+
+    <main>
+      <section class="slide hero" id="overview">
+        <div class="hero-media">
+          <img src="../Chiang Mai -- map.png" alt="Chiang Mai map with surrounding nature destinations" />
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Rednote review synthesis</p>
+          <h1>Chiang Mai places and things to do</h1>
+          <p class="lede">
+            Built from 14 downloaded Rednote notes: restaurants, cafes, bars, old-city walks,
+            tree-heavy nature stops, day trips, massages, markets, and stay bases.
+          </p>
+          <div class="stat-grid" id="stats"></div>
+          <div class="takeaway-list">
+            <p><strong>Repeat signals:</strong> Ekachan, Joost, Kat's Kitchen, Lanna Traditional House Museum, Skyline, and the Nimman base show up with especially strong language.</p>
+            <p><strong>Trip texture:</strong> the reviews favor green, slow, photogenic places as much as food: old teak houses, giant trees, waterfall climbing, village cafes, and open-air bars.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide map-slide" id="map">
+        <div class="section-heading">
+          <p class="eyebrow">Offline labeled map</p>
+          <h2>Where the recommendations cluster</h2>
+        </div>
+        <div class="map-tools" aria-label="Map category filters">
+          <div class="filter-row" id="map-category-filters"></div>
+        </div>
+        <div class="map-layout">
+          <div class="map-shell" aria-label="Chiang Mai map with labeled recommendation clusters">
+            <img src="../Chiang Mai -- map.png" alt="Chiang Mai regional map" />
+            <div class="map-markers" id="map-markers"></div>
+          </div>
+          <aside class="map-panel" id="map-panel" aria-live="polite"></aside>
+        </div>
+        <p class="map-note">
+          Markers are based on the local Rednote text and the downloaded map image. City venues are grouped by neighborhood when the notes did not include exact coordinates.
+        </p>
+      </section>
+
+      <section class="slide" id="top-picks">
+        <div class="section-heading">
+          <p class="eyebrow">Highest signal</p>
+          <h2>Start here</h2>
+        </div>
+        <div class="card-grid featured-grid" id="featured-grid"></div>
+      </section>
+
+      <section class="slide tone-green" id="nature">
+        <div class="section-heading">
+          <p class="eyebrow">Nature + adventure</p>
+          <h2>Forests, water, views, and road trips</h2>
+        </div>
+        <div class="card-grid" id="nature-grid"></div>
+      </section>
+
+      <section class="slide" id="food">
+        <div class="section-heading">
+          <p class="eyebrow">Food + cafes</p>
+          <h2>Where the Rednote notes kept circling back</h2>
+        </div>
+        <div class="card-grid dense-grid" id="food-grid"></div>
+      </section>
+
+      <section class="slide tone-warm" id="culture">
+        <div class="section-heading">
+          <p class="eyebrow">Culture, bars, markets, shopping, wellness</p>
+          <h2>Slow afternoons and late nights</h2>
+        </div>
+        <div class="card-grid" id="culture-grid"></div>
+      </section>
+
+      <section class="slide" id="stay">
+        <div class="section-heading">
+          <p class="eyebrow">Stay base</p>
+          <h2>Neighborhood and hotel notes</h2>
+        </div>
+        <div class="card-grid" id="stay-grid"></div>
+      </section>
+
+      <section class="slide all-slide" id="all-places">
+        <div class="section-heading">
+          <p class="eyebrow">Full index</p>
+          <h2>All extracted places</h2>
+        </div>
+        <div class="filters" aria-label="Place filters">
+          <div class="filter-row" id="category-filters"></div>
+          <label class="search-box">
+            <span>Search</span>
+            <input id="place-search" type="search" autocomplete="off" />
+          </label>
+        </div>
+        <p class="result-count" id="result-count"></p>
+        <div class="card-grid dense-grid" id="all-grid"></div>
+      </section>
+
+      <section class="slide source-slide" id="sources">
+        <div class="section-heading">
+          <p class="eyebrow">Sources</p>
+          <h2>Evidence used</h2>
+        </div>
+        <div class="source-layout">
+          <div>
+            <h3>Local review bundle</h3>
+            <ul id="source-notes"></ul>
+          </div>
+          <div>
+            <h3>External checks</h3>
+            <ul>
+              <li><a href="https://art-culture.cmu.ac.th/en/Museum/contactmap">CMU Lanna Traditional House Museum contact/map</a></li>
+              <li><a href="https://www.bonvoyagethailand.com/travel-guides/chiang-mai/bua-tong-sticky-waterfalls-chiang-mai/">Bua Tong Sticky Waterfalls practical guide</a></li>
+              <li><a href="https://www.chiangmai-alacarte.com/blog/warorot-market-in-chiang-mai/">Warorot Market guide</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      window.addEventListener("error", (event) => {
+        const report = document.createElement("pre");
+        report.className = "runtime-error";
+        report.textContent = `Runtime error: ${event.message}\n${event.filename || "unknown"}:${event.lineno || 0}:${event.colno || 0}`;
+        document.body.prepend(report);
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        const report = document.createElement("pre");
+        report.className = "runtime-error";
+        report.textContent = `Runtime error: ${event.reason}`;
+        document.body.prepend(report);
+      });
+    </script>
+    <script src="./data.js"></script>
+    <script>
+      document.body.dataset.guideDataLoaded = String(Boolean(window.guideData));
+      if (!window.guideData) {
+        const report = document.createElement("pre");
+        report.className = "runtime-error";
+        report.textContent = "Runtime error: guide data did not load";
+        document.body.prepend(report);
+      }
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>
